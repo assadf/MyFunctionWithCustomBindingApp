@@ -37,13 +37,13 @@ namespace MyFunctionApp
 
         [FunctionName("ReceiveSimpleNotificationHttpTrigger")]
         public static async Task<IActionResult> ReceiveSimpleNotificationAsync(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            [SimpleServiceNotifiaction] string simpleServiceNotification,
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "api/{name}")] HttpRequest req, string name,
+            [SimpleServiceNotifiaction(PushNotificationMessage = "{name}")] string simpleServiceNotification,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function ReceiveSimpleNotificationHttpTrigger.");
 
-            string name = req.Query["name"];
+            //string name = req.Query["name"];
             
             return new OkObjectResult(simpleServiceNotification);
         }

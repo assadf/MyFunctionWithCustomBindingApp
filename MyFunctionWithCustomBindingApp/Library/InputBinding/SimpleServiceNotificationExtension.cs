@@ -7,7 +7,7 @@ namespace Library.InputBinding
         public void Initialize(ExtensionConfigContext context)
         {
             var rule = context.AddBindingRule<SimpleServiceNotifiactionAttribute>();
-            rule.BindToInput(a => a.PushNotificationMessage = "Hello from Simple Service {Query.name}");
+            rule.BindToInput(a => $"Hello from Simple Service {a.PushNotificationMessage}");
         }
     }
 }
