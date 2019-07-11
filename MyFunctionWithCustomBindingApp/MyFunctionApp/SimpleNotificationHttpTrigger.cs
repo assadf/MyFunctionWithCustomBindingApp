@@ -22,14 +22,6 @@ namespace MyFunctionApp
 
             string name = req.Query["name"];
 
-            //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            //dynamic data = JsonConvert.DeserializeObject(requestBody);
-            //name = name ?? data?.name;
-
-            //return name != null
-            //    ? (ActionResult)new OkObjectResult($"Hello, {name}")
-            //    : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
-
             await notifications.AddAsync(new SimpleNotification {Name = name, Message = "Hello from my Function"});
 
             return new OkObjectResult("Check the Console for the Notification");
@@ -42,8 +34,6 @@ namespace MyFunctionApp
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function ReceiveSimpleNotificationHttpTrigger.");
-
-            //string name = req.Query["name"];
             
             return new OkObjectResult(simpleServiceNotification);
         }
